@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Quản lý người dùng</title>
 </head>
 <body>
     <div>
-        <div>
+        <h1 class="logo">
             Quản lý người dùng
-        </div>
+        </h1>
+    
+        <a class="btn-blue" href="./add.html">Thêm mới</a>
+   
         <div>
-            <a href="./add.html">Thêm mới</a>
-        </div>
-        <div>
-            <table>
+            <table class="users">
                 <tr>
                     <th>STT</th>
                     <th>Username</th>
@@ -31,8 +32,8 @@
                     <td>01/01/1992</td>
                     <td>Nam</td>
                     <td>
-                        <a href="#">Sửa</a>
-                        <a href="#">Xóa</a>
+                        <a class="btn-sal" href="#">Sửa</a>
+                        <a class="btn-red" href="#">Xóa</a>
                     </td>
                 </tr>
                 <tr>
@@ -42,8 +43,8 @@
                     <td>01/01/1992</td>
                     <td>Nam</td>
                     <td>
-                        <a href="#">Sửa</a>
-                        <a href="#">Xóa</a>
+                        <a class="btn-sal" href="#">Sửa</a>
+                        <a class="btn-red" href="#">Xóa</a>
                     </td>
                 </tr>
                 <tr>
@@ -53,8 +54,8 @@
                     <td>01/01/1992</td>
                     <td>Nam</td>
                     <td>
-                        <a href="#">Sửa</a>
-                        <a href="#">Xóa</a>
+                        <a class="btn-sal" href="#">Sửa</a>
+                        <a class="btn-red" href="#">Xóa</a>
                     </td>
                 </tr>
             </table>
