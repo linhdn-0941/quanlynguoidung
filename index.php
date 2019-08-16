@@ -37,6 +37,14 @@
             }
             break;
 
+        case 'user':
+            switch ($action) {
+                default:
+                    require_once('views/user/index.php');
+                    break;
+            }
+            break;
+
         case 'register':
             switch ($action) {
                 case 'store':
@@ -53,6 +61,10 @@
             switch ($action) {
                 case 'login':
                     LoginController::getInstance()->login();
+                    break;
+
+                case 'logout':
+                    LoginController::getInstance()->logout();
                     break;
 
                 default:
