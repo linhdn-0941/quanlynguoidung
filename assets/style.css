@@ -5,12 +5,12 @@
     padding: 50px;
 }
 
-.logo{
+.logo {
   text-align: center;
   color: lightcoral;
 }
 
-.inp{
+.inp {
   width: 100%;
   padding: 10px;
   display: inline-block;
@@ -19,13 +19,13 @@
   font-size: 16px;
 }
 
-.lab{
+.lab {
   margin-top: 10px;
   display: inline-block;
   text-align: center;
 }
 
-.btn-blue{
+.btn-blue {
   font-family: 'Times New Roman', Times, serif;
   background-color: lightskyblue;
   border: none;
@@ -38,7 +38,7 @@
   margin: 10px 10px 0px 0px;
 }
 
-.btn-green{
+.btn-green {
   font-family: 'Times New Roman', Times, serif;
   background-color: lightgreen;
   border: none;
@@ -51,7 +51,7 @@
   margin: 10px 10px 0px 0px;
 }
 
-.btn-sal{
+.btn-sal {
   font-family: 'Times New Roman', Times, serif;
   background-color: lightsalmon;
   border: none;
@@ -64,7 +64,7 @@
   margin: 10px 10px 0px 0px;
 }
 
-.btn-red{
+.btn-red {
   font-family: 'Times New Roman', Times, serif;
   background-color: red;
   border: none;
@@ -84,7 +84,7 @@
   width: 100%;
 }
 
-.users td, #users th {
+.users td, .users th {
   border: 1px solid #ddd;
   padding: 8px;
 }

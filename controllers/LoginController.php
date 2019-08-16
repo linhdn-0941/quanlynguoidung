@@ -10,7 +10,7 @@
 
         public static function getInstance()
         {
-            if (LoginController::$instance == null) {
+            if (is_null(LoginController::$instance)) {
                 LoginController::$instance = new LoginController();
             }
 
@@ -35,7 +35,7 @@
             if (!empty($user)) {
                 session_start();
                 $_SESSION['user'] = $user;
-                if ($user->vaitro_id == 1) {
+                if ($user->vaitro_id === 1) {
                     header('Location: ?controller=admin');
                 } else {
                     echo 'member';
