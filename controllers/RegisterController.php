@@ -10,7 +10,7 @@
 
         public static function getInstance()
         {
-            if (RegisterController::$instance == null) {
+            if (is_null(RegisterController::$instance)) {
                 RegisterController::$instance = new RegisterController();
             }
 
@@ -39,7 +39,7 @@
                 $parameters = [$username, md5($password), 2, $hoten, $ngaysinh, $gioitinh];
                 $result = DataProvider::getInstance()->excuteNonQuery($query, $parameters);
 
-                if ($result == 1) {
+                if ($result === 1) {
                     echo 'Register corret';
                 } else {
                     echo 'Register incorret';
