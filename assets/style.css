@@ -1,0 +1,98 @@
+.center {
+    margin: auto;
+    width: 30%;
+    border: 1px solid blue;
+    padding: 50px;
+}
+
+.logo {
+  text-align: center;
+  color: lightcoral;
+}
+
+.inp {
+  width: 100%;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid lightskyblue;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.lab {
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-blue {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: lightskyblue;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 0px 0px;
+}
+
+.btn-green {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: lightgreen;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 0px 0px;
+}
+
+.btn-sal {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: lightsalmon;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 0px 0px;
+}
+
+.btn-red {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 0px 0px;
+}
+
+.users {
+  margin-top: 10px;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.users td, .users th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.users th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: lightcoral;
+  color: white;
+}
