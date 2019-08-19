@@ -2,10 +2,12 @@
     use Controller\AdminController;
     use Controller\LoginController;
     use Controller\RegisterController;
+    use Controller\UserController;
 
     require_once('controllers/AdminController.php');
     require_once('controllers/LoginController.php');
     require_once('controllers/RegisterController.php');
+    require_once('controllers/UserController.php');
 
     if ($_GET['controller']) {
         $controller = $_GET['controller'];
@@ -40,7 +42,7 @@
         case 'user':
             switch ($action) {
                 default:
-                    require_once('views/user/index.php');
+                    UserController::getInstance()->index();
                     break;
             }
             break;

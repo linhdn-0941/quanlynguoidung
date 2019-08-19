@@ -21,18 +21,12 @@
             $user = $_SESSION['user'];
     
             if (!empty($user)) {
-                if ($user->vaitro_id === '1') {
-                    
-                } else {
+                if ($user->vaitro_id !== '1') {
                     header('Location: ?controller=user');
                 }
-                
             } else {
                 header('Location: ?');
-                echo 'khong co quyen';
-                die();
-            }
-            
+            }  
         }
 
         public function index()

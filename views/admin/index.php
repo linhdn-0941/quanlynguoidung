@@ -13,6 +13,7 @@
             Quản lý người dùng
         </h1>
         <a class="btn-blue" href="?controller=admin&action=create">Thêm mới</a>
+        <a class="btn-logout" href="?action=logout">Logout</a>
         <div>
             <table class="users">
                 <tr>

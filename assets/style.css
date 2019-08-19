@@ -76,6 +76,19 @@
   font-size: 16px;
   margin: 10px 10px 0px 0px;
 }
+.btn-logout {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 0px 0px;
+  float: right;
+}
 
 .users {
   margin-top: 10px;
