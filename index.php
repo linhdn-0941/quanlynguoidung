@@ -2,10 +2,12 @@
     use Controller\AdminController;
     use Controller\LoginController;
     use Controller\RegisterController;
+    use Controller\UserController;
 
     require_once('controllers/AdminController.php');
     require_once('controllers/LoginController.php');
     require_once('controllers/RegisterController.php');
+    require_once('controllers/UserController.php');
 
     if ($_GET['controller']) {
         $controller = $_GET['controller'];
@@ -26,13 +28,35 @@
                     AdminController::getInstance()->create();
                     break;
 
+                case 'store':
+                    AdminController::getInstance()->store()();
+                    break;
+
                 case 'edit':
                     $id = $_GET['id'];
                     AdminController::getInstance()->edit($id);
                     break;
 
+                case 'update':
+                    $id = $_GET['id'];
+                    AdminController::getInstance()->update($id);
+                    break;
+                
+                case 'destroy':
+                    $id = $_GET['id'];
+                    AdminController::getInstance()->destroy($id)();
+                    break;
+
                 default:
                     AdminController::getInstance()->index();
+                    break;
+            }
+            break;
+
+        case 'user':
+            switch ($action) {
+                default:
+                    UserController::getInstance()->index();
                     break;
             }
             break;
@@ -53,6 +77,10 @@
             switch ($action) {
                 case 'login':
                     LoginController::getInstance()->login();
+                    break;
+
+                case 'logout':
+                    LoginController::getInstance()->logout();
                     break;
 
                 default:
