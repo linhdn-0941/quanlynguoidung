@@ -35,10 +35,10 @@
             if (!empty($user)) {
                 session_start();
                 $_SESSION['user'] = $user;
-                if ($user->vaitro_id === 1) {
+                if ($user->vaitro_id === '1') {
                     header('Location: ?controller=admin');
                 } else {
-                    echo 'member';
+                    header('Location: ?controller=user');
                 }
             } else {
                 echo 'login incorret';
