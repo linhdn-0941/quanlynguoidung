@@ -2,6 +2,7 @@
     namespace Controller;
 
     use Models\DataProvider;
+    
     require_once('models/DataProvider.php');
 
     class AdminController
@@ -103,7 +104,7 @@
                 if ($result) {
                     header('Location: ?controller=admin');
                 } else {
-                    echo 'updated incorret';
+                    echo 'Updated incorret';
                 }
             } else {
                 echo 'Password not match';
@@ -119,9 +120,8 @@
             if ($result) {
                 header('Location: ?controller=admin');
             } else {
-                echo 'updated incorret';
+                echo 'Destroy incorret';
             }
-            
         }
     }
 ?>

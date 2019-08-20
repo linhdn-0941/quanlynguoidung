@@ -6,12 +6,12 @@
 
     class DataProvider
     {
-        private $connectString = 'mysql:host=localhost;dbname=demo;charset=utf8';
+        private $connectString = 'mysql:host=localhost;dbname=quanlynguoidung;charset=utf8';
         private static $instance;
         
         public static function getInstance()
         {
-            if(DataProvider::$instance == null){
+            if(is_null(DataProvider::$instance)){
                 DataProvider::$instance = new DataProvider();
             }
             return DataProvider::$instance;

@@ -2,6 +2,7 @@
     namespace Controller;
 
     use Models\DataProvider;
+    
     require_once('models/DataProvider.php');
 
     class UserController
@@ -29,6 +30,8 @@
 
         public function index()
         {
+            session_start();
+            $user = $_SESSION['user'];
             require_once('views/user/index.php');
         }
     }

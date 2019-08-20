@@ -2,6 +2,7 @@
     namespace Controller;
 
     use Models\DataProvider;
+    
     require_once('models/DataProvider.php');
 
     class LoginController
@@ -42,6 +43,17 @@
                 }
             } else {
                 echo 'login incorret';
+            }
+        }
+
+        public function logout()
+        {
+            session_start();
+            $user = $_SESSION['user'];
+
+            if (!empty($user)) {
+                unset($_SESSION['user']);
+                header('Location: ?');
             }
         }
     }
