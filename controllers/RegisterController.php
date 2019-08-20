@@ -2,6 +2,7 @@
     namespace Controller;
 
     use Models\DataProvider;
+    
     require_once('models/DataProvider.php');
 
     class RegisterController
@@ -39,7 +40,7 @@
                 $parameters = [$username, md5($password), 2, $hoten, $ngaysinh, $gioitinh];
                 $result = DataProvider::getInstance()->excuteNonQuery($query, $parameters);
 
-                if ($result === 1) {
+                if ($result) {
                     echo 'Register corret';
                 } else {
                     echo 'Register incorret';

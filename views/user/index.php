@@ -8,10 +8,6 @@
     <title>User</title>
 </head>
 <body>
-    <?php 
-        session_start();
-        $user = $_SESSION['user'];
-    ?>
     <a class="btn-logout" href="?action=logout">Logout</a>
     <div class="center">
         <h1 class="logo">Welcome</h1>

@@ -31,11 +31,11 @@
                         <td><?php echo $user['username']; ?></td>
                         <td><?php echo $user['hoten']; ?></td>
                         <td><?php echo $user['ngaysinh']; ?></td>
-                        <td><?php echo $user['gioitinh'] == 1 ? 'Nam' : 'Nu'?></td>
+                        <td><?php echo $user['gioitinh'] == 1 ? 'Nam' : 'Nữ'?></td>
                         <td><?php echo $user['vaitro']; ?></td>
                         <td>
                             <a class="btn-sal" href="?controller=admin&action=edit&id=<?php echo $user['id']; ?>">Sửa</a>
-                            <a class="btn-red" href="#">Xóa</a>
+                            <a class="btn-red" href="?controller=admin&action=destroy&id=<?php echo $user['id']; ?>">Xóa</a>
                         </td>
                     </tr>
                 <?php } ?>
