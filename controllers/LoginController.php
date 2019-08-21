@@ -25,24 +25,33 @@
 
         public function login()
         {
-            $username = $_POST['username'];
-            $password = md5($_POST['password']);
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
 
-            $query = 'SELECT * FROM nguoidung WHERE username = ? AND password = ?';
-            $parameters = [$username, $password];
+            $user = ['username' => $username, 'password' => $password];
 
-            $user = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
+            $errors = $this->validation($user);
 
-            if (!empty($user)) {
-                session_start();
-                $_SESSION['user'] = $user;
-                if ($user->vaitro_id === '1') {
-                    header('Location: ?controller=admin');
+            if (empty($errors)) {
+                $query = 'SELECT * FROM nguoidung WHERE username = ? AND password = ?';
+                $parameters = [$username, md5($password)];
+    
+                $user = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
+    
+                if (!empty($user)) {
+                    session_start();
+                    $_SESSION['user'] = $user;
+                    if ($user->vaitro_id === '1') {
+                        header('Location: ?controller=admin');
+                    } else {
+                        header('Location: ?controller=user');
+                    }
                 } else {
-                    header('Location: ?controller=user');
+                    $errorLogin = 'Username or password incorret';
+                    require_once('views/login.php');
                 }
             } else {
-                echo 'login incorret';
+                require_once('views/login.php');
             }
         }
 
@@ -55,5 +64,21 @@
                 unset($_SESSION['user']);
                 header('Location: ?');
             }
+        }
+
+        public function validation($user){
+            $errors = [];
+            $patternPassword = '/^[\w]{6,255}$/';
+
+            if (!filter_var($user['username'], FILTER_VALIDATE_EMAIL)) {
+                $error = 'Username phải phải là email';
+                array_push($errors, $error);
+            }
+            if (!preg_match($patternPassword, $user['password'])) {
+                $error = 'Password phải lớn hơn 6 và nhỏ hơn 255 kí tự';
+                array_push($errors, $error);
+            }
+
+            return $errors;
         }
     }
