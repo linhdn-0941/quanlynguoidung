@@ -110,3 +110,7 @@
   background-color: lightcoral;
   color: white;
 }
+
+.text-danger {
+  color: red;
+}

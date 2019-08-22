@@ -11,28 +11,35 @@
     <div class="center">
         <h1 class="logo">Register</h1>
             <form action="?controller=register&action=store" method="post">
+                <?php
+                    echo '<ul>';
+                    foreach ($errors as $error) {
+                        echo '<li class="text-danger">' . $error . '</li>';
+                    }
+                    echo '</ul>'
+                ?>
                 <label class="lab">Username</label>
-                <input class="inp" type="text" name="username" placeholder="Enter uername" required>
+                <input class="inp" type="text" name="username" placeholder="Enter username" required minlength="6" maxlength="255">
 
                 <label class="lab">Password</label>
-                <input class="inp" type="password" name="password" placeholder="Enter password" required>
+                <input class="inp" type="password" name="password" placeholder="Enter password" required minlength="6" maxlength="255">
 
                 <label class="lab">Confirm password</label>
-                <input class="inp" type="password" name="confirm_password" placeholder="Confirm password" required>
+                <input class="inp" type="password" name="confirm_password" placeholder="Confirm password" required minlength="6" maxlength="255">
 
-                <label class="lab">Họ tên</label>
-                <input class="inp" type="text" name="hoten" placeholder="Enter họ tên" required>
+                <label class="lab">Name</label>
+                <input class="inp" type="text" name="hoten" placeholder="Enter name" required minlength="6" maxlength="255">
 
-                <label class="lab">Ngày sinh</label>
+                <label class="lab">Date of birth</label>
                 <input class="inp" type="date" name="ngaysinh" required>
 
-                <label class="lab">Giới tính</label>
+                <label class="lab">Gender</label>
                 <select class="inp" name="gioitinh" required>
                     <option value="1">Nam</option>
                     <option value="0">Nữ</option>
                 </select>
 
-                <button class="btn-blue" type="submit">Đăng ký</button>
+                <button class="btn-blue" type="submit">Register</button>
                 <button class="btn-sal" type="reset">Reset</button>
             </form>
         </div>
