@@ -62,10 +62,14 @@
         public function validation($user){
             $errors = [];
             $patternPassword = '/^\S*(?=\S{6,255})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
-            $patternHoten = '/^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{6,255}$/';
+            $patternHoten = '/[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{6,255}/';
             
             if (!filter_var($user['username'], FILTER_VALIDATE_EMAIL)) {
                 $error = 'Username phải phải là email và lớn hơn 6 kí tự và nhỏ hơn 255  kí tự';
+                array_push($errors, $error);
+            }
+            if ($this->isExistUsername($user['username'])) {
+                $error = 'Username đã tồn tại';
                 array_push($errors, $error);
             }
             if (!preg_match($patternPassword, $user['password'])) {
@@ -86,5 +90,18 @@
             }
 
             return $errors;
+        }
+
+        public function isExistUsername($username)
+        {
+            $query = 'SELECT * FROM nguoidung WHERE username = ?';
+            $parameters = [$username];
+
+            $result = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
+
+            if (empty($result)) {
+                return false;
+            } 
+            return true;
         }
     }
