@@ -49,18 +49,27 @@
 
         public function store()
         {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $confirm_password = $_POST['confirm_password'];
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
+            $confirm_password = trim($_POST['confirm_password']);
             $vaitro = $_POST['vaitro'];
-            $hoten = $_POST['hoten'];
+            $hoten = trim($_POST['hoten']);
             $ngaysinh = $_POST['ngaysinh'];
             $gioitinh = $_POST['gioitinh'];
 
-            if ($password == $confirm_password) {
+            $user = [
+                'username' => $username,
+                'password' => $password,
+                'confirm_password' => $confirm_password,
+                'hoten' => $hoten
+            ];
+            
+            $errors = $this->validation($user);
+      
+            if (empty($errors)) {
                 $query = '
-                        INSERT INTO nguoidung(username, password, vaitro_id, hoten, ngaysinh, gioitinh) 
-                        VALUES(?, ?, ?, ?, ?, ?)
+                    INSERT INTO nguoidung(username, password, vaitro_id, hoten, ngaysinh, gioitinh) 
+                    VALUES(?, ?, ?, ?, ?, ?)
                 ';
                 $parameters = [$username, md5($password), $vaitro, $hoten, $ngaysinh, $gioitinh];
                 $result = DataProvider::getInstance()->excuteNonQuery($query, $parameters);
@@ -71,7 +80,7 @@
                     echo 'Stored incorret';
                 }
             } else {
-                echo 'Password not match';
+                require_once('views/admin/create.php');
             }
         }
 
@@ -82,32 +91,44 @@
             $user = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
             require_once('views/admin/edit.php');
         }
-
+        
         public function update($id)
         {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $confirm_password = $_POST['confirm_password'];
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
+            $confirm_password = trim($_POST['confirm_password']);
             $vaitro = $_POST['vaitro'];
-            $hoten = $_POST['hoten'];
+            $hoten = trim($_POST['hoten']);
             $ngaysinh = $_POST['ngaysinh'];
             $gioitinh = $_POST['gioitinh'];
             
-            if ($password == $confirm_password) {
+            $user = [
+                'username' => $username,
+                'password' => $password,
+                'confirm_password' => $confirm_password,
+                'hoten' => $hoten
+            ];
+            
+            $errors = $this->validation($user, false);
+
+            if (empty($errors)) {
                 $query = '
-                        UPDATE nguoidung SET username = ? , password = ?, vaitro_id = ?, hoten = ?, ngaysinh = ?, gioitinh = ?
-                        WHERE id = ?
+                    UPDATE nguoidung SET username = ? ,password = ?, vaitro_id = ?, hoten = ?, ngaysinh = ?, gioitinh = ?
+                    WHERE id = ?
                 ';
                 $parameters = [$username, md5($password), $vaitro, $hoten, $ngaysinh, $gioitinh, $id];
                 $result = DataProvider::getInstance()->excuteNonQuery($query, $parameters);
-       
+        
                 if ($result) {
                     header('Location: ?controller=admin');
                 } else {
                     echo 'Updated incorret';
                 }
             } else {
-                echo 'Password not match';
+                $query = 'SELECT * FROM nguoidung WHERE id = ?';
+                $parameters = [$id];
+                $user = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
+                require_once('views/admin/edit.php');
             }
         }
 
@@ -123,5 +144,52 @@
                 echo 'Destroy incorret';
             }
         }
+
+        public function validation($user, $create = true){
+            $errors = [];
+            $patternPassword = '/^\S*(?=\S{6,255})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
+            $patternHoten = '/[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{6,255}/';
+
+            if ($create) {
+                if (!filter_var($user['username'], FILTER_VALIDATE_EMAIL)) {
+                    $error = 'Username phải là email và lớn hơn 6 kí tự và nhỏ hơn 255  kí tự';
+                    array_push($errors, $error);
+                }
+                if ($this->isExistUsername($user['username'])) {
+                    $error = 'Username đã tồn tại';
+                    array_push($errors, $error);
+                }
+            } 
+            if (!preg_match($patternPassword, $user['password'])) {
+                $error = 'Password phải có ký tự viết hoa, viết thường, chữ số và lớn hơn 6 kí tự và nhỏ hơn 255  kí tự';
+                array_push($errors, $error);
+            }
+            if (!preg_match($patternPassword, $user['confirm_password'])) {
+                $error = 'Confirm password phải có ký tự viết hoa, viết thường, chữ số và lớn hơn 6 kí tự và nhỏ hơn 255  kí tự';
+                array_push($errors, $error);
+            }
+            if ($user['password'] !== $user['confirm_password']) {
+                $error = 'Password không khớp';
+                array_push($errors, $error);
+            }
+            if (!preg_match($patternHoten, $user['hoten'])) {
+                $error = 'Họ tên phải lớn hơn 6 kí tự và nhỏ hơn 255  kí tự, không chứa sô';
+                array_push($errors, $error);
+            }
+  
+            return $errors;
+        }
+
+        public function isExistUsername($username)
+        {
+            $query = 'SELECT * FROM nguoidung WHERE username = ?';
+            $parameters = [$username];
+
+            $result = DataProvider::getInstance()->excuteScalarQuery($query, $parameters);
+
+            if (empty($result)) {
+                return false;
+            } 
+            return true;
+        }
     }
-?>

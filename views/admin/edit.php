@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Sửa</title>
+    <title>Edit</title>
 </head>
 <body>
     <div class="center">
-            <h1 class="logo">Sửa</h1>
+            <h1 class="logo">Edit</h1>
             <form action="?controller=admin&action=update&id=<?php echo $user->id; ?>" method="post">
+                <?php
+                    echo '<ul>';
+                    foreach ($errors as $error) {
+                        echo '<li class="text-danger">' . $error . '</li>';
+                    }
+                    echo '</ul>'
+                ?>
                 <label class="lab">Username</label>
-                <input class="inp" type="text" name="username" readonly value="<?php echo $user->username; ?>">
+                <input class="inp" type="text" name="username" readonly value="<?php echo $user->username; ?>" required>
 
                 <label class="lab">New password</label>
-                <input class="inp" type="password" name="password" value="" minlength="6" maxlength="255">
+                <input class="inp" type="password" name="password" value="" minlength="6" maxlength="255" required>
 
                 <label class="lab" for="">Confirm password</label>
-                <input class="inp" type="password" name="confirm_password" value="" minlength="6" maxlength="255">
+                <input class="inp" type="password" name="confirm_password" value="" minlength="6" maxlength="255" required>
 
                 <label class="lab">Họ tên</label>
-                <input class="inp" type="text" name="hoten" value="<?php echo $user->hoten; ?>" minlength="6" maxlength="255">
+                <input class="inp" type="text" name="hoten" value="<?php echo $user->hoten; ?>" minlength="6" maxlength="255" required>
 
                 <label class="lab">Ngày sinh</label>
                 <input class="inp" type="date" name="ngaysinh" value="<?php echo $user->ngaysinh; ?>" required>
@@ -38,9 +45,8 @@
                     <option value="1" <?php echo $user->vaitro_id == 1 ? 'selected' : '' ?> >ADMIN</option>
                 </select>
 
-                <button class="btn-sal" type="submit">Sửa</button>
+                <button class="btn-sal" type="submit">Update</button>
             </form>
-       
     </div>
 </body>
 </html>
