@@ -1,91 +1,91 @@
 <?php
-    use Controller\AdminController;
-    use Controller\LoginController;
-    use Controller\RegisterController;
-    use Controller\UserController;
+use Controller\AdminController;
+use Controller\LoginController;
+use Controller\RegisterController;
+use Controller\UserController;
 
-    require_once('controllers/AdminController.php');
-    require_once('controllers/LoginController.php');
-    require_once('controllers/RegisterController.php');
-    require_once('controllers/UserController.php');
+require_once('controllers/AdminController.php');
+require_once('controllers/LoginController.php');
+require_once('controllers/RegisterController.php');
+require_once('controllers/UserController.php');
 
-    if ($_GET['controller']) {
-        $controller = $_GET['controller'];
-    } else {
-        $controller = '';
-    }
+if ($_GET['controller']) {
+    $controller = $_GET['controller'];
+} else {
+    $controller = '';
+}
 
-    if ($_GET['action']) {
-        $action = $_GET['action'];
-    } else {
-        $action = '';
-    }
+if ($_GET['action']) {
+    $action = $_GET['action'];
+} else {
+    $action = '';
+}
 
-    switch ($controller) {
-        case 'admin':
-            switch ($action) {
-                case 'create':
-                    AdminController::getInstance()->create();
-                    break;
+switch ($controller) {
+    case 'admin':
+        switch ($action) {
+            case 'create':
+                AdminController::getInstance()->create();
+                break;
 
-                case 'store':
-                    AdminController::getInstance()->store()();
-                    break;
+            case 'store':
+                AdminController::getInstance()->store()();
+                break;
 
-                case 'edit':
-                    $id = $_GET['id'];
-                    AdminController::getInstance()->edit($id);
-                    break;
+            case 'edit':
+                $id = $_GET['id'];
+                AdminController::getInstance()->edit($id);
+                break;
 
-                case 'update':
-                    $id = $_GET['id'];
-                    AdminController::getInstance()->update($id);
-                    break;
-                
-                case 'destroy':
-                    $id = $_GET['id'];
-                    AdminController::getInstance()->destroy($id)();
-                    break;
+            case 'update':
+                $id = $_GET['id'];
+                AdminController::getInstance()->update($id);
+                break;
+            
+            case 'destroy':
+                $id = $_GET['id'];
+                AdminController::getInstance()->destroy($id)();
+                break;
 
-                default:
-                    AdminController::getInstance()->index();
-                    break;
-            }
-            break;
+            default:
+                AdminController::getInstance()->index();
+                break;
+        }
+        break;
 
-        case 'user':
-            switch ($action) {
-                default:
-                    UserController::getInstance()->index();
-                    break;
-            }
-            break;
+    case 'user':
+        switch ($action) {
+            default:
+                UserController::getInstance()->index();
+                break;
+        }
+        break;
 
-        case 'register':
-            switch ($action) {
-                case 'store':
-                    RegisterController::getInstance()->store();
-                    break;
+    case 'register':
+        switch ($action) {
+            case 'store':
+                RegisterController::getInstance()->store();
+                break;
 
-                default:
-                    RegisterController::getInstance()->index();
-                    break;
-            }
-            break; 
+            default:
+                RegisterController::getInstance()->index();
+                break;
+        }
+        break;
 
-        default:
-            switch ($action) {
-                case 'login':
-                    LoginController::getInstance()->login();
-                    break;
+    default:
+        switch ($action) {
+            case 'login':
+                LoginController::getInstance()->login();
+                break;
 
-                case 'logout':
-                    LoginController::getInstance()->logout();
-                    break;
+            case 'logout':
+                LoginController::getInstance()->logout();
+                break;
 
-                default:
-                    LoginController::getInstance()->index();
-                    break;
-            }
-            break;
-    }
+            default:
+                LoginController::getInstance()->index();
+                break;
+        }
+        break;
+}

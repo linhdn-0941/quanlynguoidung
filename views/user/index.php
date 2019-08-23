@@ -25,7 +25,8 @@
             <input class="inp" type="text" value="<?php echo $user->gioitinh === '1' ? 'Nam' : 'Nữ'; ?>" readonly>
 
             <label class="lab">Vai trò</label>
-            <input class="inp" type="text" value="<?php echo $user->vaitro_id === '1' ? 'ADMIN' : 'MEMBER'; ?>" readonly>
+            <input class="inp" type="text" value="<?php echo $user->vaitro_id === '1' ? 'ADMIN' : 'MEMBER'; ?>"
+            readonly>
         </form>
 
     </div>
