@@ -12,23 +12,27 @@
         <h1 class="logo">Add new</h1>
         <form action="?controller=admin&action=store" method="post">
             <?php
-                echo '<ul>';
-                foreach ($errors as $error) {
-                    echo '<li class="text-danger">' . $error . '</li>';
-                }
-                echo '</ul>'
+            echo '<ul>';
+            foreach ($errors as $error) {
+                echo '<li class="text-danger">' . $error . '</li>';
+            }
+            echo '</ul>'
             ?>
             <label class="lab">Username</label>
-            <input class="inp" type="text" name="username" placeholder="Enter username" minlength="6" maxlength="255" required>
+            <input class="inp" type="text" name="username" placeholder="Enter username" 
+            minlength="6" maxlength="255" required>
 
             <label class="lab">Password</label>
-            <input class="inp" type="password" name="password" placeholder="Enter password" minlength="6" maxlength="255" required>
+            <input class="inp" type="password" name="password" placeholder="Enter password" 
+            minlength="6" maxlength="255" required>
 
             <label class="lab">Confirm password</label>
-            <input class="inp" type="password" name="confirm_password" placeholder="Confirm password" minlength="6" maxlength="255" required>
+            <input class="inp" type="password" name="confirm_password" placeholder="Confirm password" 
+            minlength="6" maxlength="255" required>
 
             <label class="lab">Name</label>
-            <input class="inp" type="text" name="hoten" placeholder="Enter name" required minlength="6" maxlength="255">
+            <input class="inp" type="text" name="hoten" placeholder="Enter name" 
+            required minlength="6" maxlength="255">
 
             <label class="lab">Date of birth</label>
             <input class="inp" type="date" name="ngaysinh" required>
